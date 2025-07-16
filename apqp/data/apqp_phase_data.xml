@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default APQP Phases -->
+        <record id="phase_1" model="apqp.phase">
+            <field name="name">Phase 1: Plan and Define Program</field>
+            <field name="sequence">10</field>
+            <field name="description">Planning and program definition phase</field>
+            <field name="color">1</field>
+        </record>
+        
+        <record id="phase_2" model="apqp.phase">
+            <field name="name">Phase 2: Product Design and Development</field>
+            <field name="sequence">20</field>
+            <field name="description">Product design and development verification</field>
+            <field name="color">2</field>
+        </record>
+        
+        <record id="phase_3" model="apqp.phase">
+            <field name="name">Phase 3: Process Design and Development</field>
+            <field name="sequence">30</field>
+            <field name="description">Process design and development verification</field>
+            <field name="color">3</field>
+        </record>
+        
+        <record id="phase_4" model="apqp.phase">
+            <field name="name">Phase 4: Product and Process Validation</field>
+            <field name="sequence">40</field>
+            <field name="description">Product and process validation</field>
+            <field name="color">4</field>
+        </record>
+        
+        <record id="phase_5" model="apqp.phase">
+            <field name="name">Phase 5: Launch, Feedback, Assessment and Corrective Action</field>
+            <field name="sequence">50</field>
+            <field name="description">Production launch and continuous improvement</field>
+            <field name="color">5</field>
+        </record>
+    </data>
+</odoo>

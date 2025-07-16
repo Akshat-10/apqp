@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_apqp_phase_user,apqp.phase.user,model_apqp_phase,base.group_user,1,0,0,0
+access_apqp_phase_manager,apqp.phase.manager,model_apqp_phase,base.group_system,1,1,1,1
+access_apqp_format_template_user,apqp.format.template.user,model_apqp_format_template,base.group_user,1,0,0,0
+access_apqp_format_template_manager,apqp.format.template.manager,model_apqp_format_template,base.group_system,1,1,1,1
+access_apqp_timeline_chart_user,apqp.timeline.chart.user,model_apqp_timeline_chart,base.group_user,1,1,1,0
+access_apqp_timeline_chart_manager,apqp.timeline.chart.manager,model_apqp_timeline_chart,base.group_system,1,1,1,1
+access_apqp_timeline_format_user,apqp.timeline.format.user,model_apqp_timeline_format,base.group_user,1,1,1,1
+access_apqp_timeline_format_manager,apqp.timeline.format.manager,model_apqp_timeline_format,base.group_system,1,1,1,1
+access_apqp_timeline_attachment_user,apqp.timeline.attachment.user,model_apqp_timeline_attachment,base.group_user,1,1,1,1
+access_apqp_timeline_attachment_manager,apqp.timeline.attachment.manager,model_apqp_timeline_attachment,base.group_system,1,1,1,1
+access_apqp_timeline_overview_wizard,apqp.timeline.overview.wizard,model_apqp_timeline_overview_wizard,base.group_user,1,0,0,0
+access_apqp_mom_format_user,apqp.mom.format.user,model_apqp_mom_format,base.group_user,1,1,1,1
+access_apqp_mom_format_manager,apqp.mom.format.manager,model_apqp_mom_format,base.group_system,1,1,1,1
+access_apqp_open_point_user,apqp.open.point.user,model_apqp_open_point,base.group_user,1,0,0,0
+access_apqp_open_point_manager,apqp.open.point.manager,model_apqp_open_point,base.group_system,1,1,1,1

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="apqp_phase_tree" model="ir.ui.view">
+            <field name="name">apqp.phase.tree</field>
+            <field name="model">apqp.phase</field>
+            <field name="arch" type="xml">
+                <tree string="APQP Phases" editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="color" widget="color_picker"/>
+                    <field name="active"/>
+                    <button
+                    name="get_formview_action"
+                    type="object"
+                    string="Open"
+                    class="btn bi-info-circle"
+                    />
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="apqp_phase_form" model="ir.ui.view">
+            <field name="name">apqp.phase.form</field>
+            <field name="model">apqp.phase</field>
+            <field name="arch" type="xml">
+                <form string="APQP Phase">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                            <field name="description"/>
+                            <field name="color" widget="color_picker"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_apqp_phase">
+            <field name="name">APQP Phases</field>
+            <field name="res_model">apqp.phase</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_apqp_phase" name="Phases" parent="menu_apqp_configuration" sequence="10" action="action_apqp_phase" />
+
+    </data>
+</odoo>

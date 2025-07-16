@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit document package form view to add APQP Timeline Chart button -->
+        <record id="view_document_package_form_inherit" model="ir.ui.view">
+            <field name="name">xf.doc.approval.document.package.inherit.form</field>
+            <field name="model">xf.doc.approval.document.package</field>
+            <field name="inherit_id" ref="xf_doc_approval.xf_doc_approval_document_package_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_apqp_timeline_chart" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-line-chart"
+                                attrs="{'invisible': [('apqp_timeline_chart_id', '=', False)]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">APQP Timeline</span>
+                            </div>
+                        </button>
+                    </div>
+                </xpath>
+                
+                <!-- Add phase_id to document_approval_ids tree view -->
+                <xpath expr="//field[@name='document_approval_ids']/tree/field[@name='formate']" position="after">
+                    <field name="phase_id" optional="show" readonly="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='project_end_date']" position="after">
+                    <field name="apqp_timeline_chart_id" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
