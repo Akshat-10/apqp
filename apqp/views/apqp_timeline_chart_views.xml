@@ -122,7 +122,8 @@
                                           >
                                         <field name="sequence" widget="handle"/>
                                         <field name="serial_no" force_save="1"/>
-                                        <field name="open_point_id" options="{'no_quick_create': True}"/>
+                                        <!-- <field name="open_point_id" options="{'no_quick_create': True}"/> -->
+                                        <field name="open_point_id"/>
                                         <field name="responsibility_id" context="{'default_supplier_rank': 1}"/>
                                         <field name="target_date"/>
                                         <field name="actual_completion_date"/>
