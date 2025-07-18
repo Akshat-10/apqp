@@ -106,7 +106,13 @@
                                 <field name="timeline_html" widget="html" options="{'safe': True}"/>
                             </page>
                             <page name="mom_format" string="MOM Format">
-                                <field name="mom_format_ids" mode="tree">
+                                <group>
+                                    <group string="Default MOM Settings">
+                                        <field name="conducted_by_id" widget="many2one_avatar_employee"/>
+                                        <field name="attendee_ids" widget="many2many_tags_avatar"/>
+                                    </group>
+                                </group>
+                                <field name="mom_format_ids" mode="tree" context="{'default_timeline_chart_id': id, 'timeline_chart_id': id}">
                                     <tree string="MOM Format" 
                                           decoration-success="state=='approved'" 
                                           decoration-info="state=='completed'" 
@@ -122,8 +128,8 @@
                                         <field name="actual_completion_date"/>
                                         <field name="remarks"/>
                                         <field name="create_date" readonly="1" widget="date"  optional="show"/>
-                                        <field name="attendee_ids" widget="many2many_tags" optional="show"/>
-                                        <field name="conducted_by_id" widget="many2one_avatar_employee" optional="show"/>
+                                        <field name="attendee_ids" widget="many2many_tags" optional="hide"/>
+                                        <field name="conducted_by_id" widget="many2one_avatar_employee" optional="hide"/>
                                         <!-- <field name="approve_date" readonly="1" optional="show" attrs="{'column_invisible': [('parent.state', '!=', 'approved')]}"/>
                                         <field name="approved_by_id" readonly="1" optional="show" attrs="{'column_invisible': [('parent.state', '!=', 'approved')]}"/> -->
                                         <field name="state" widget="badge" 
@@ -157,8 +163,8 @@
                                             attrs="{'invisible': [('state', 'in', ['draft'])]}"
                                             icon="fa-undo"
                                             confirm="Are you sure you want to reset this record to draft?"/>
-                                        <field name="approve_date" attrs="{'invisible': [('state', 'not in', 'approved')]}"  optional="show"/>
-                                        <field name="approved_by_id" attrs="{'invisible': [('state', 'not in', 'approved')]}"  optional="show"/>
+                                        <field name="approve_date" attrs="{'invisible': [('state', 'not in', 'approved')]}"/>
+                                        <field name="approved_by_id" attrs="{'invisible': [('state', 'not in', 'approved')]}" />
                                     </tree>
                                 </field>
                             </page>

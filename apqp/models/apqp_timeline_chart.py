@@ -46,6 +46,10 @@ class APQPTimelineChart(models.Model):
     # MOM Format Lines
     mom_format_ids = fields.One2many('apqp.mom.format', 'timeline_chart_id', string='MOM Formats')
     
+    # Attendees and Conducted By fields for automatic MOM data transfer
+    attendee_ids = fields.Many2many('hr.employee', 'apqp_timeline_attendee_rel', 'timeline_id', 'employee_id', string='Default Attendees')
+    conducted_by_id = fields.Many2one('hr.employee', string='Default Conducted By/Champion')
+    
     # State Management
     state = fields.Selection([
         ('draft', 'Draft'),

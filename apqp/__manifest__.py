@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'APQP Timeline Chart',
-    'version': '16.0.1.0.2',
+    'version': '16.0.1.0.3',
     'category': 'Project Management',
     'summary': 'Advanced Product Quality Planning Timeline Chart Management',
     'description': """
@@ -17,7 +17,7 @@
         - Phase-wise timeline visualization
     """,
     'author': 'Your Company',
-    'depends': ['base', 'xf_doc_approval', 'iatf', 'mail', 'hr', 'product', 'board'],
+    'depends': ['xf_doc_approval', 'iatf', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'data/apqp_phase_data.xml',

@@ -23,7 +23,7 @@
                 
                 <!-- Add phase_id to document_approval_ids tree view -->
                 <xpath expr="//field[@name='document_approval_ids']/tree/field[@name='formate']" position="after">
-                    <field name="phase_id" optional="show" readonly="1"/>
+                    <field name="phase_id" optional="show" readonly="0"/>
                 </xpath>
 
                 <xpath expr="//field[@name='project_end_date']" position="after">

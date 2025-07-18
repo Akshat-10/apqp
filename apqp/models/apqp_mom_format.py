@@ -37,6 +37,26 @@ class APQPMomFormat(models.Model):
     attendee_ids = fields.Many2many('hr.employee', 'apqp_mom_attendee_rel', 'mom_id', 'employee_id', string='Attendees')
     conducted_by_id = fields.Many2one('hr.employee', string='Conducted By/Champion')
     
+    @api.model
+    def default_get(self, fields_list):
+        """Override default_get to populate attendee_ids and conducted_by_id from timeline chart."""
+        defaults = super(APQPMomFormat, self).default_get(fields_list)
+        
+        # Check if we're creating from a timeline chart context
+        timeline_chart_id = self.env.context.get('timeline_chart_id') or self.env.context.get('default_timeline_chart_id')
+        if not timeline_chart_id and 'timeline_chart_id' in defaults:
+            timeline_chart_id = defaults['timeline_chart_id']
+            
+        if timeline_chart_id:
+            timeline_chart = self.env['apqp.timeline.chart'].browse(timeline_chart_id)
+            if timeline_chart.exists():
+                if 'attendee_ids' in fields_list and timeline_chart.attendee_ids:
+                    defaults['attendee_ids'] = [(6, 0, timeline_chart.attendee_ids.ids)]
+                if 'conducted_by_id' in fields_list and timeline_chart.conducted_by_id:
+                    defaults['conducted_by_id'] = timeline_chart.conducted_by_id.id
+        
+        return defaults
+    
     # Approval fields
     approve_date = fields.Datetime(string='Approve Date', readonly=True)
     approved_by_id = fields.Many2one('res.users', string='Approved By', readonly=True)
@@ -46,6 +66,16 @@ class APQPMomFormat(models.Model):
     
     # State History Tracking
     state_history = fields.Text(string='State History', readonly=True, copy=False)
+    
+    @api.onchange('timeline_chart_id')
+    def _onchange_timeline_chart_id(self):
+        """Auto-fill attendee_ids and conducted_by_id when timeline chart is selected."""
+        if self.timeline_chart_id:
+            # Only set if fields are empty
+            if not self.attendee_ids and self.timeline_chart_id.attendee_ids:
+                self.attendee_ids = self.timeline_chart_id.attendee_ids
+            if not self.conducted_by_id and self.timeline_chart_id.conducted_by_id:
+                self.conducted_by_id = self.timeline_chart_id.conducted_by_id
     
     @api.depends('timeline_chart_id', 'sequence')
     def _compute_serial_no(self):
@@ -75,6 +105,16 @@ class APQPMomFormat(models.Model):
         # Initialize state_history
         if 'state_history' not in vals:
             vals['state_history'] = ''
+        
+        # Auto-fill attendee_ids and conducted_by_id from timeline chart
+        if 'timeline_chart_id' in vals and vals['timeline_chart_id']:
+            timeline_chart = self.env['apqp.timeline.chart'].browse(vals['timeline_chart_id'])
+            if timeline_chart:
+                # Only set if not already provided or if empty
+                if ('attendee_ids' not in vals or not vals.get('attendee_ids')) and timeline_chart.attendee_ids:
+                    vals['attendee_ids'] = [(6, 0, timeline_chart.attendee_ids.ids)]
+                if ('conducted_by_id' not in vals or not vals.get('conducted_by_id')) and timeline_chart.conducted_by_id:
+                    vals['conducted_by_id'] = timeline_chart.conducted_by_id.id
         
         res = super(APQPMomFormat, self).create(vals)
         if res.timeline_chart_id:
