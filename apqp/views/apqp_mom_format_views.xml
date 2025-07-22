@@ -32,7 +32,7 @@
                             attrs="{'invisible': [('state', 'not in', ['in_progress'])]}" confirm="Are you sure you want to mark this as completed?"/>
                     <button name="action_approve" type="object" string="Approve" class="btn-success" 
                             attrs="{'invisible': [('state', '!=', 'completed')]}" confirm="Are you sure you want to approve this MOM?"/>
-                    <button name="action_cancel" type="object" string="Cancel" 
+                    <button name="action_cancel" type="object" string="Cancel" class="btn-sm btn-danger"
                             attrs="{'invisible': [('state', 'in', ['approved', 'cancelled'])]}" confirm="Are you sure you want to cancel this record?"/>
                     <button name="action_reset_to_draft" type="object" string="Reset to Draft" 
                             attrs="{'invisible': [('state', 'in', ['draft'])]}" confirm="Are you sure you want to reset this record to draft?"/>
