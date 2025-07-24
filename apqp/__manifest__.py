@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'APQP Timeline Chart',
-    'version': '16.0.1.0.3',
+    'version': '16.0.1.0',
     'category': 'Project Management',
     'summary': 'Advanced Product Quality Planning Timeline Chart Management',
+    'license': 'AGPL-3',
     'description': """
         APQP Timeline Chart Module
         
